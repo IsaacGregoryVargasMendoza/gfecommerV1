@@ -9,14 +9,31 @@ class Cliente extends Model
 {
     use HasFactory;
     
-    protected $fillable=[
-        'identificadorCliente',
-        'nombreCliente',
-        'direccionCliente',
-        'celularCliente',
-        'correoCliente',
-        'usuarioCliente',
-        'contraseniaCliente',
-        'estadoCliente'
+    protected $table = "cliente";
+
+    protected $primaryKey = "idCliente";
+
+    protected $fillable = [
+        "numeroDocumento",
+        "nombre",
+        "apellidoPaterno",
+        "apellidoMaterno",
+        "sexo",
+        "fechaNacimiento",
+        "tipo",
+        "razonSocial",
+        "direccionEmpresa",
+        "nombreComercial",
+        "idTipoDocumento",
+        "idPais",
+        "idDepartamento",
+        "idProvincia",
+        "idDistrito",
+        "idUsers"
     ];
+
+    public function scopeNoArchivados($query)
+    {
+        return $query->where('archivado', 0);
+    }
 }

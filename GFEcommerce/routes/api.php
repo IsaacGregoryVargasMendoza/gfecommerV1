@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\UnidadMedidaController;
+use App\Http\Controllers\ProductoController;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -25,4 +26,12 @@ Route::controller(UnidadMedidaController::class)->group(function () {
     Route::get("/unidadDeMedida/{id}","show");
     Route::put("/unidadDeMedida/{id}","update");
     Route::delete("/unidadDeMedida/{id}","destroy");//si se borra de raiz se utiliza Route::delete
+});
+
+Route::controller(ProductoController::class)->group(function () {
+    Route::get("/productos","index");
+    Route::post("/producto","store");
+    Route::get("/producto/{id}","show");
+    Route::put("/producto/{id}","update");
+    Route::delete("/producto/{id}","destroy");
 });

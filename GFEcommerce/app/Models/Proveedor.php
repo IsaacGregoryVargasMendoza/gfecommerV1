@@ -9,13 +9,31 @@ class Proveedor extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-        'identificadorProveedor',
-        'nombreProveedor',
-        'direccionProveedor',
-        'correoProveedor',
-        'celularProveedor',
-        'estadoProveedor',
-        'idTipoDocumento'
+    protected $table = "proveedor";
+
+    protected $primaryKey = "idProveedor";
+
+    protected $fillable = [
+        "numeroDocumento",
+        "nombre",
+        "apellidoPaterno",
+        "apellidoMaterno",
+        "sexo",
+        "fechaNacimiento",
+        "razonSocial",
+        "direccion",
+        "nombreComercial",
+        "estado",
+        "tipo",
+        "idTipoDocumento",
+        "idPais",
+        "idDepartamento",
+        "idProvincia",
+        "idDistrito"
     ];
+
+    public function scopeNoArchivados($query)
+    {
+        return $query->where('archivado', 0);
+    }
 }

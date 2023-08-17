@@ -9,14 +9,22 @@ class Trabajador extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-        'identificadorTrabajador',
-        'nombreTrabajador',
-        'direccionTrabajador',
-        'correoTrabajador',
-        'celularTrabajador',
-        'cargoTrabajador',
-        'estadoTrabajador',
-        'idTipoDocumento'
+    protected $table = "trabajador";
+
+    protected $primaryKey = "idTrabajador";
+
+    protected $fillable = [
+        "estado",
+        "idPersona",
+        "idUsers",
+        "idCargo",
+        "idSucursalOrigen",
+        "idSucursalActual",
+        "idMotivoCese"
     ];
+
+    public function scopeNoArchivados($query)
+    {
+        return $query->where('archivado', 0);
+    }
 }

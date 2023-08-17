@@ -20,5 +20,20 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        TipoDocumento::create([
+            "nombre" => "DNI"
+        ]);
+
+        TipoDocumento::create([
+            "nombre" => "RUC"
+        ]);
+
+        TipoDocumento::create([
+            "nombre" => "PASAPORTE"
+        ]);
+
+        TipoDocumento::create([
+            "nombre" => "C.E."
+        ]);
     }
 }

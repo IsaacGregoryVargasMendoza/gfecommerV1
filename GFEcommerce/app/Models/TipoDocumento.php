@@ -9,8 +9,17 @@ class TipoDocumento extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-        'nombreTipoDocumento',
-        'estadoTipoDocumento'
+    protected $table = "tipodocumento";
+
+    protected $primaryKey = "idTipoDocumento";
+
+    protected $fillable = [
+        "nombre",
+        "descripcion"
     ];
+
+    public function scopeNoArchivados($query)
+    {
+        return $query->where('archivado', 0);
+    }
 }

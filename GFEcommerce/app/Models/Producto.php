@@ -8,17 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     use HasFactory;
+    
+    protected $table = "producto";
 
-    protected $fillable=[
-        'codigoProducto',//por definirse
-        'nombreProducto',
-        'descripcionProducto',
-        'stockProducto',
-        'stockMinimoProducto',
-        'precioCompraProducto',
-        'imagenProducto',
-        'visibleProducto',
-        'estadoProducto',
-        'idCategoria'
+    protected $primaryKey = "idProducto";
+
+    protected $fillable = [
+        "codigo",
+        "nombre",
+        "descripcion",
+        "imagen",
+        "visible",
+        "estado"
     ];
+
+    public function scopeNoArchivados($query)
+    {
+        return $query->where('archivado', 0);
+    }
 }

@@ -12,7 +12,7 @@ const EditarCategoria = () => {
     const update = async (e) => {
         e.preventDefault()
         await axios.put(`${endpoint}${id}`,{nombreCategoria: nombreCategoria})
-        navigate('/')
+        navigate('/categorias')
     }
 
     useEffect(() =>{
@@ -34,7 +34,7 @@ const EditarCategoria = () => {
                                     <label className="form-label">Nombre</label>
                                     <input 
                                         type="text"
-                                        className="form-control text-uppercase"
+                                        className="form-control"
                                         value={nombreCategoria}
                                         onChange={(e)=> setNombreCategoria(e.target.value)}
                                     />
@@ -50,6 +50,7 @@ const EditarCategoria = () => {
                     </div>
                 </form>
             </div>
+
     )
 }
 

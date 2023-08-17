@@ -1,53 +1,53 @@
-import React,{useEffect,useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { Button } from 'primereact/button';
 
 const endpoint = 'http://localhost:8000/api'
 
 const ListarCategorias = () => {
-    const [ categorias, setCategorias ] = useState( [] )
-    
-    useEffect(()=>{
+    const [categorias, setCategorias] = useState([])
+
+    // const navigate = useNavigate()
+
+    useEffect(() => {
         getTodaslasCategorias()
     }, [])
 
-    const getTodaslasCategorias = async() =>{
+    const getTodaslasCategorias = async () => {
         const respuesta = await axios.get(`${endpoint}/categorias`)
         setCategorias(respuesta.data)
     }
 
-    const eliminarCategoria = async(id) =>{
+    const eliminarCategoria = async (id) => {
         await axios.delete(`${endpoint}/categoria/${id}`)
         getTodaslasCategorias()
     }
-    
+
+    const accionesBodyTemplate = (rowData) => {
+        return <div>
+            <Link to={`/categoria/edit/${rowData.id}`}><Button type="button" label="Editar" className="p-button-sm p-button-warning"/></Link>
+            {/* <Button onClick={() => navigate(`/categoria/edit/${rowData.id}`)} label="Editar" className="p-button-sm p-button-danger"/> */}
+            <Button onClick={() => eliminarCategoria(rowData.id)} label="Borrar" className="p-button-sm p-button-danger"/>
+        </div>;
+    }
+
     return (
         <div className='container'>
             <div className="g-grid gap-2">
-                <Link to="/create" className="btn btn-success btn-lg mt-2 mb-2 text-white">Crear</Link>
+                <Link to="/categoria/create"><Button label="Crear" className="p-button-sm p-button-success"/></Link>
+                <Link to="/"><Button label="Atras" className="p-button-sm p-button-warning"/></Link>
             </div>
-            <table id="datatable" className="table table-striped mt-4">
-                <thead className="table-dark">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th className="text-center" scope="col">Nombre</th>
-                        <th className="text-center" scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {categorias.map((categoria)=>(
-                        <tr key={categoria.id}>
-                            <td className="text-center">{categoria.id}</td>
-                            <td className="text-center">{categoria.nombreCategoria}</td>
-                            <td>
-                                <Link to={`/edit/${categoria.id}`} className="btn btn-warning">Editar</Link>
-                                <button onClick={()=>eliminarCategoria(categoria.id)} className="btn btn-danger">Borrar</button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className="card">
+                <DataTable value={categorias} responsiveLayout="scroll">
+                    <Column field="id" header="ID"></Column>
+                    <Column field="nombreCategoria" header="Nombre"></Column>
+                    <Column header="Acciones" body={accionesBodyTemplate}></Column>
+                </DataTable>
+            </div>
         </div>
     )
 }

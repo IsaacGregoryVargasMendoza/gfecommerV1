@@ -9,8 +9,18 @@ class Categoria extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-        'nombreCategoria',
-        'estadoCategoria'
+    //idCategoria, nombre, descripcion, archivado
+    protected $table = "categoria";
+
+    protected $primaryKey = "idCategoria";
+
+    protected $fillable = [
+        "nombre",
+        "descripcion"
     ];
+
+    public function scopeNoArchivados($query)
+    {
+        return $query->where('archivado', 0);
+    }
 }

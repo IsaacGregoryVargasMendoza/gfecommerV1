@@ -9,16 +9,29 @@ class Venta extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-        'numeroVenta',
-        'serieVenta',
-        'fechaVenta',
-        'subtotalVenta',
-        'igvVenta',
-        'totalVenta',
-        'esCreditoVenta',
-        'estadoVenta',
-        'idPedido',
-        'idMedioPago'
+    protected $table = "venta";
+
+    protected $primaryKey = "idVenta";
+
+    protected $fillable = [
+        "numeroDocumento",
+        "denominacionCliente",
+        "direccionCliente",
+        "fechaEmision",
+        "serie",
+        "correlativo",
+        "subTotal",
+        "igv",
+        "total",
+        "idCliente",
+        "idTrabajador",
+        "idTipoComprobante",
+        "idCaja",
+        "idMedioPago"
     ];
+
+    public function scopeNoArchivados($query)
+    {
+        return $query->where('archivado', 0);
+    }
 }

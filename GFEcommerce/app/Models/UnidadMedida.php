@@ -9,8 +9,17 @@ class UnidadMedida extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-        'nombreUnidadMedida',
-        'estadoUnidadMedida'
+    protected $table = "unidadmedida";
+
+    protected $primaryKey = "idUnidadMedida";
+
+    protected $fillable = [
+        "nombre",
+        "descripcion",
     ];
+
+    public function scopeNoArchivados($query)
+    {
+        return $query->where('archivado', 0);
+    }
 }

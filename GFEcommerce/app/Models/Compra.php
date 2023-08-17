@@ -9,14 +9,30 @@ class Compra extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-        'serieCompra',
-        'fechaCompra',
-        'subtotalCompra',
-        'igvCompra',
-        'totalCompra',
-        'estadoCompra',
-        'idProveedor',
-        'idTrabajador'
+    protected $table = "compra";
+
+    protected $primaryKey = "idCompra";
+
+    protected $fillable = [
+        "numeroDocumento",
+        "denominacionProveedor",
+        "direccionProveedor",
+        "fechaEmision",
+        "serie",
+        "correlativo",
+        "subTotal",
+        "igv",
+        "total",
+        "idProveedor",
+        "idTrabajador",
+        "idTipoComprobante",
+        "idCaja",
+        "idMedioPago",
+        "estado"
     ];
+
+    public function scopeNoArchivados($query)
+    {
+        return $query->where('archivado', 0);
+    }
 }

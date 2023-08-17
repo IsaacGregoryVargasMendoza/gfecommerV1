@@ -9,8 +9,16 @@ class MedioPago extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-        'nombreMedioPago',
-        'estadoMedioPago'
+    protected $table = "mediopago";
+
+    protected $primaryKey = "idMedioPago";
+
+    protected $fillable = [
+        "nombre"
     ];
+
+    public function scopeNoArchivados($query)
+    {
+        return $query->where('archivado', 0);
+    }
 }

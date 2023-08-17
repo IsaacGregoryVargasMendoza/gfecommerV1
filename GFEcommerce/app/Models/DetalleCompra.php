@@ -9,11 +9,23 @@ class DetalleCompra extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-        'cantidadDetalleCompra',
-        'precioDetalleCompra',
-        'totalDetalleCompra',
-        'idCompra',
-        'idProducto'
+    protected $table = "detallecompra";
+
+    protected $primaryKey = "idDetalleCompra";
+
+    protected $fillable = [
+        "cantidad",
+        "precio",
+        "total",
+        "descuento",
+        "observacion",
+        "idPresentacion",
+        "idAlmacen",
+        "idCompra"
     ];
+
+    public function scopeNoArchivados($query)
+    {
+        return $query->where('archivado', 0);
+    }
 }
