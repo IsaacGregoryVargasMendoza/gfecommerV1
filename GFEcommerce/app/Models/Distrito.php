@@ -22,4 +22,8 @@ class Distrito extends Model
     {
         return $query->where('archivado', 0);
     }
+
+    public function provincia(){
+        return $this->belongsTo(Provincia::class,'idProvincia');
+    }
 }

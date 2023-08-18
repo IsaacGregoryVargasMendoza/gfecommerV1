@@ -36,4 +36,24 @@ class Proveedor extends Model
     {
         return $query->where('archivado', 0);
     }
+
+    public function tipoDocumento(){
+        return $this->belongsTo(TipoDocumento::class,'idTipoDocumento');
+    }
+
+    public function pais(){
+        return $this->belongsTo(Pais::class,'idPais');
+    }
+
+    public function departamento(){
+        return $this->belongsTo(Departamento::class,'idDepartamento');
+    }
+
+    public function provincia(){
+        return $this->belongsTo(Provincia::class,'idProvincia');
+    }
+
+    public function distrito(){
+        return $this->belongsTo(Distrito::class,'idDistrito');
+    }
 }

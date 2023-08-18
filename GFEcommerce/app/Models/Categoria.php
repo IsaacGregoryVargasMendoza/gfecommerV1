@@ -9,7 +9,6 @@ class Categoria extends Model
 {
     use HasFactory;
 
-    //idCategoria, nombre, descripcion, archivado
     protected $table = "categoria";
 
     protected $primaryKey = "idCategoria";
@@ -22,5 +21,9 @@ class Categoria extends Model
     public function scopeNoArchivados($query)
     {
         return $query->where('archivado', 0);
+    }
+
+    public function detalleCategoria(){
+        return $this->hasMany(DetalleCategoria::class,'idCategoria');
     }
 }

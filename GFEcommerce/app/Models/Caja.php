@@ -19,11 +19,25 @@ class Caja extends Model
         "montoInicial",
         "saldoFinal",
         "saldoSistema",
-        "estado"
+        "estado",
+        "idSucursal",
+        "idNumeroCaja"
     ];
 
     public function scopeNoArchivados($query)
     {
         return $query->where('archivado', 0);
+    }
+
+    public function sucursal(){
+        return $this->belongsTo(Sucursal::class,'idSucursal');
+    }
+
+    public function numeroCaja(){
+        return $this->belongsTo(NumeroCaja::class,'idNumeroCaja');
+    }
+
+    public function movimientos(){
+        return $this->hasMany(MovimientoCaja::class,'idMovimientoCaja');
     }
 }

@@ -27,4 +27,28 @@ class Trabajador extends Model
     {
         return $query->where('archivado', 0);
     }
+
+    public function persona(){
+        return $this->belongsTo(Persona::class,'idPersona');
+    }
+
+    public function users(){
+        return $this->belongsTo(User::class,'idUsers');
+    }
+
+    public function cargo(){
+        return $this->belongsTo(Cargo::class,'idCargo');
+    }
+
+    public function sucursalOrigen(){
+        return $this->belongsTo(Sucursal::class,'idSucursalOrigen');
+    }
+
+    public function sucursalActual(){
+        return $this->belongsTo(Sucursal::class,'idSucursalOrigen');
+    }
+
+    public function motivoCese(){
+        return $this->belongsTo(MotivoCese::class,'idMotivoCese');
+    }
 }

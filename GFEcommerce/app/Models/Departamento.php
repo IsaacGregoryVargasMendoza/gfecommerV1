@@ -22,4 +22,12 @@ class Departamento extends Model
     {
         return $query->where('archivado', 0);
     }
+
+    public function pais(){
+        return $this->belongsTo(Pais::class,'idPais');
+    }
+
+    public function provincias(){
+        return $this->hasMany(Provincia::class,'idProvincia');
+    }
 }

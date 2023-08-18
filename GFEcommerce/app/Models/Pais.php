@@ -22,4 +22,8 @@ class Pais extends Model
     {
         return $query->where('archivado', 0);
     }
+
+    public function departamentos(){
+        return $this->hasMany(Departamento::class,'idDepartamento');
+    }
 }

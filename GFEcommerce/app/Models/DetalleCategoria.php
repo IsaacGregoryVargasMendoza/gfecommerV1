@@ -21,4 +21,12 @@ class DetalleCategoria extends Model
     {
         return $query->where('archivado', 0);
     }
+
+    public function categoria(){
+        return $this->belongsTo(Categoria::class,'idCategoria');
+    }
+
+    public function producto(){
+        return $this->belongsTo(Producto::class,'idProducto');
+    }
 }

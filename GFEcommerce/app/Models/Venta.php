@@ -34,4 +34,24 @@ class Venta extends Model
     {
         return $query->where('archivado', 0);
     }
+
+    public function cliente(){
+        return $this->belongsTo(Cliente::class,'idCliente');
+    }
+
+    public function trabajador(){
+        return $this->belongsTo(Trabajador::class,'idTrabajador');
+    }
+
+    public function tipoComprobante(){
+        return $this->belongsTo(TipoComprobante::class,'idTipoComprobante');
+    }
+
+    public function caja(){
+        return $this->belongsTo(Caja::class,'idCaja');
+    }
+
+    public function medioPago(){
+        return $this->belongsTo(Cliente::class,'idCliente');
+    }
 }

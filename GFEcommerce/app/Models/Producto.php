@@ -26,4 +26,12 @@ class Producto extends Model
     {
         return $query->where('archivado', 0);
     }
+
+    public function detalleCategoria(){
+        return $this->hasMany(DetalleCategoria::class,'idProducto');
+    }
+
+    public function presentaciones(){
+        return $this->hasMany(Presentacion::class,'idPresentacion');
+    }
 }
